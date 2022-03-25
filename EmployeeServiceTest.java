@@ -1,41 +1,87 @@
-package com.testing.juitilminiproject;
+package test;
+
 
 import static org.junit.jupiter.api.Assertions.*;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
+import entity.AccountNotFoundException;
+import entity.Address;
+import entity.Employee;
+import entity.EmployeeService;
+
+@TestMethodOrder(value=OrderAnnotation.class)
 class EmployeeServiceTest {
-	EmployeeService emp;
+
+	EmployeeService employeeService;
+	
+	List<Employee>list=new ArrayList<Employee>();
 	@BeforeEach
-	void setUp() {
-		emp=new EmployeeService();
+	public  void setUp()
+	{
+		employeeService=new EmployeeService();	
+		
 	}
-	@Test
-	@DisplayName("employee added or not")
-	void checkAddTest() {
-		emp.addEmployee(101,"Ajith Andrew J",100000,"Chennai","69");
-		assertEquals(1,emp.employeeLength());
+	
+	
+      @Test
+      @DisplayName("testing add employee method")
+      @Order(1)
+	void AddEmployeetest() {
+      employeeService.addEmployee(102, "raj", 30000, "nagpur");
+    	  
+	     assertEquals(1, employeeService.lengthOfList());
 	}
-	@Test
-	@DisplayName("id present or not")
-	void idTest() {
-		emp.addEmployee(101,"Ajith Andrew J",100000,"Chennai","69");
-		assertThrows(AccountNumberIncorrectException.class,()->emp.employeeNot(10));
-	}
-	@Test
-	@DisplayName("calculating yearly sal")
-	void calYearlySalTest() {
-		emp.addEmployee(101,"Ajith Andrew J",100000,"Chennai","69");
-		assertEquals(1200000,emp.calYearlySal(101));
-	}
-	@Test
-	@Disabled
-	@DisplayName("calculating appraisal")
-	void calAppraisalTest() {
-		emp.addEmployee(101,"Ajith Andrew J",100000,"Chennai","69");
-		assertEquals(1000,emp.calAppraisal(101));
-	}
+      
+      @Test
+      @DisplayName("testing employee id present or not")
+      @Order(value = 4)
+      void findAccountTest()
+      {
+    	  employeeService.addEmployee(103, "raj", 30000, "nagpur");
+    	  assertThrows(AccountNotFoundException.class, 
+    			  ()->employeeService.findAccount(105));
+      }
+      
+      
+      @Test
+      @DisplayName("calculate appriasal")
+      @Order(2)
+	   public void testCalculateAppriasal() {
+    	  employeeService.addEmployee(102, "raj", 3000, "nagpur");
+			
+	      double appraisal = employeeService.calculateAppraisalById(102);
+	      assertEquals(500, appraisal, 0.0);
+	   }
+
+	   @Test
+	   @DisplayName("calculate yearly salary")
+	   @Order(3)
+	   public void testCalculateYearlySalary() {
+		   employeeService.addEmployee(102, "raj", 30000, "nagpur");
+				
+	      double salary = employeeService.calculateYearlySalary(102);
+	      assertEquals(360000, salary, 0.0);
+	   }
+
+	   @Test
+	   @Disabled
+	   @DisplayName("TDD method,this test should not run")
+	   void testDisabled()
+	   {
+		   fail("This test should disbled");
+	   }
+	   
+	   
+	   
 }
