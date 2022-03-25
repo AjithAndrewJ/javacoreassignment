@@ -38,7 +38,7 @@ class EmployeeServiceTest {
       @DisplayName("testing add employee method")
       @Order(1)
 	void AddEmployeetest() {
-      employeeService.addEmployee(102, "raj", 30000, "nagpur");
+      employeeService.addEmployee(102, "ajith", 30000, "chennai");
     	  
 	     assertEquals(1, employeeService.lengthOfList());
 	}
@@ -48,7 +48,7 @@ class EmployeeServiceTest {
       @Order(value = 4)
       void findAccountTest()
       {
-    	  employeeService.addEmployee(103, "raj", 30000, "nagpur");
+    	  employeeService.addEmployee(103, "andrew", 30000, "chennai");
     	  assertThrows(AccountNotFoundException.class, 
     			  ()->employeeService.findAccount(105));
       }
@@ -58,7 +58,7 @@ class EmployeeServiceTest {
       @DisplayName("calculate appriasal")
       @Order(2)
 	   public void testCalculateAppriasal() {
-    	  employeeService.addEmployee(102, "raj", 3000, "nagpur");
+    	  employeeService.addEmployee(102, "ajith", 3000, "chennai");
 			
 	      double appraisal = employeeService.calculateAppraisalById(102);
 	      assertEquals(500, appraisal, 0.0);
@@ -68,7 +68,7 @@ class EmployeeServiceTest {
 	   @DisplayName("calculate yearly salary")
 	   @Order(3)
 	   public void testCalculateYearlySalary() {
-		   employeeService.addEmployee(102, "raj", 30000, "nagpur");
+		   employeeService.addEmployee(102, "ajith", 30000, "chennai");
 				
 	      double salary = employeeService.calculateYearlySalary(102);
 	      assertEquals(360000, salary, 0.0);
