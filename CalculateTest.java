@@ -74,17 +74,13 @@ class CalculatorTest {
 		int num=7;
 		String name="rajiv";
 		
-	//checking false condition
-		assertFalse(num>10);//asserting condition should false
+		assertFalse(num>10);
 		
-		//checking true condition
-		assertTrue(num>10); //expecting true
+		assertTrue(num>10); 
 		
-		//check for not null
-		assertNotNull(name);//expecting not null
+		assertNotNull(name);
 		
-		//check for null
-		assertNull(name); //expecting null
+		assertNull(name);
 		
 	}
 	@Nested
@@ -95,24 +91,20 @@ class CalculatorTest {
 	@EnabledOnOs(value= {OS.WINDOWS,OS.LINUX})
 	void testAddTwoPositiveNumber()
 	{
-		//conditional test
 		boolean assumption=true;
 	
 		assumeTrue(assumption);
-		//if above assumptions is true,then rest of test will proceed
 		assertEquals(30, cal.add(20, 10));
 	}
 	
 	@Test
 	@DisplayName(value = "additing one positive and one negtative number")
-	//@EnabledOnJre(value = JRE.JAVA_8)
 	@EnabledForJreRange(min=JRE.JAVA_8,max = JRE.JAVA_16)
 	void testAddOnePositiveOneNegativeNumber()
 	{
 		boolean assumption=false;
 	
 		assumeFalse(assumption);
-		//if above assumptions is false,then rest of test will proceed
 		assertEquals(30, cal.add(20, -10));
 	}
 	
@@ -123,7 +115,6 @@ class CalculatorTest {
 		
 		 int expected=20; int actual=cal.add(10, 12);
 		 
-		//assertEquals(expected, actual);
 		assertEquals(20, cal.add(1, 10),"two number should add");
 	}
 	
